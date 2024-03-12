@@ -17,11 +17,11 @@
             <div class="slider-wrapper" tabindex="0">
 
                 <div class="item">
-                    <img v-for="slide in slides" v-bind:src="slide.image" alt="Spiderman" />
+                    <img v-bind:src="slides[activeImage].image" alt="Spiderman" />
                     <div class="text">
-                        <h3>{{slides.title[activeImage]}}</h3>
+                        <h3>{{slides[activeImage].title}}</h3>
                         <p>
-                            {{slides.text[activeImage]}} 
+                            {{slides[activeImage].text}} 
                         </p>
                     </div>
                 </div>
@@ -29,8 +29,8 @@
                 <div class="thumbs">
                     <div class="prev" @click="prev()"></div>
                     <div class="next" @click="next()"></div>
-                    <div class="thumb" v-bind:class="{active: thumb.image[4]}" v-for="(thumb, index) in slides.image">
-                        <img :src="thumb"   :alt="thumb.title" />
+                    <div class="thumb" v-bind:class="{active: index == activeImage}" v-for="(thumb, index) in slides">
+                        <img :src="thumb.image" @click="activeImage = index"  :alt="thumb.title" />
                     </div>
                 </div>
 
