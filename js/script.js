@@ -9,10 +9,13 @@ createApp({
   data() {
         return {
 
+            // variabile contatore di secondi della funzione tempo
             time: 0,
 
+            // segnalibro dell,index corrente
             activeImage: 0,
 
+            // array di oggetti
             slides: [
                 {
                     image: 'img/01.webp',
@@ -43,16 +46,18 @@ createApp({
         }
         
     },
+
     methods: {
 
+        // funzione per il tasto prev
         prev(){
             this.activeImage--
             if( this.activeImage < 0 ){
-                this.activeImage = this.slides.length
+                this.activeImage = this.slides.length -1
             }
             
         },
-
+        // funzione per il tasto next
         next(){
             this.activeImage++
             if(this.activeImage === this.slides.length){
@@ -61,26 +66,28 @@ createApp({
             }
             
         },
+
+        // funzione per il timer dell'avanzamento automatico
         startAutoPlay(){
             this.time = setInterval(() => {
-                if(this.time == 3){
                     this.next()
-                }
             },3000)
         },
+
+        // funzione per stopare il timer
         stopAutoplay(){
             clearInterval(this.time)
-            console.log('stop')
+
         },
+        
         
 
  
     },
+
     mounted(){
         this.startAutoPlay()
-
-        this.slides.addEventlistener('mouseover', this.stopAutoplay())
-    }
+       
+    },
 
 }).mount('#app')
-
